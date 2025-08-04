@@ -51,3 +51,17 @@ export const updateTodo = mutation({
 		});
 	},
 });
+
+export const clearAllTodos = mutation({
+	args: {},
+	handler: async (ctx, args) => {
+		const todos = await ctx.db.query("todos").collect();
+
+		// ekta ekta dhoro, dhore dhore delete koro
+		for (const todo of todos) {
+			await ctx.db.delete(todo._id);
+		}
+
+		return { deletedCount: todos.length };
+	},
+});
