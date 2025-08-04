@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 export const getTodos = query({
@@ -18,5 +18,17 @@ export const addTodo = mutation({
 		});
 
 		return todoId;
+	},
+});
+
+export const toggleTodo = mutation({
+	args: { id: v.id("todos") },
+	handler: async (ctx, args) => {
+		const todo = await ctx.db.get(args.id);
+		if (!todo) {
+			throw new ConvexError("Todo not found");
+		}
+
+		await ctx.db.patch(args.id, { isCompleted: !todo.isCompleted });
 	},
 });
