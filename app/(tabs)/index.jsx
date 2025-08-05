@@ -1,13 +1,10 @@
-import { api } from "@/convex/_generated/api";
 import useTheme from "@/hooks/useTheme";
-import { useMutation } from "convex/react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
-	const { toggleDarkMode } = useTheme();
+	const { toggleDarkMode, colors } = useTheme();
 
-	const addTodo = useMutation(api.todos.addTodo);
-	const clearAllTodos = useMutation(api.todos.clearAllTodos);
+	const styles = createStyles(colors);
 
 	return (
 		<View style={styles.container}>
@@ -22,35 +19,30 @@ export default function Index() {
 					toggleDarkMode();
 				}}
 			>
-				<Text>toggle dark mode</Text>
-			</TouchableOpacity>
-
-			<TouchableOpacity
-				onPress={() => {
-					addTodo({ text: "Walk the cat" });
-				}}
-			>
-				<Text>Add a new todo</Text>
-			</TouchableOpacity>
-
-			<TouchableOpacity
-				onPress={() => {
-					clearAllTodos();
-				}}
-			>
-				<Text>Clear all todos</Text>
+				<Text style={[styles.content, { backgroundColor: "red" }]}>
+					toggle dark mode
+				</Text>
 			</TouchableOpacity>
 		</View>
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	content: {
-		fontSize: 52,
-	},
-});
+// because direct `cssProperty: colors.propertyName` evabe lekha jay na
+// tai function er moddhe likhe argument hishebe pass kora lagtese
+const createStyles = (colors) => {
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			justifyContent: "center",
+			alignItems: "center",
+			gap: 20,
+			backgroundColor: colors.bg,
+		},
+		content: {
+			fontSize: 32,
+			color: colors.text,
+		},
+	});
+
+	return styles;
+};
