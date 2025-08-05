@@ -1,48 +1,30 @@
 import useTheme from "@/hooks/useTheme";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StatusBar, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { createHomeStyles } from "../../assets/styles/home.styles";
+import Header from "../../components/Header";
 
 export default function Index() {
 	const { toggleDarkMode, colors } = useTheme();
 
-	const styles = createStyles(colors);
+	const homeStyles = createHomeStyles(colors);
 
 	return (
-		<View style={styles.container}>
-			<Text style={styles.content}>
-				Edit app/index.tsx to edit this screen Sizan.
-			</Text>
+		<>
+			<StatusBar barStyle={colors.statusBarStyle} />
+			<SafeAreaView style={homeStyles.container}>
+				{/* header */}
+				<Header />
 
-			<Text style={styles.content}>Hiii </Text>
-
-			<TouchableOpacity
-				onPress={() => {
-					toggleDarkMode();
-				}}
-			>
-				<Text style={[styles.content, { backgroundColor: "red" }]}>
-					toggle dark mode
-				</Text>
-			</TouchableOpacity>
-		</View>
+				{/* dark mode toggle button */}
+				<TouchableOpacity
+					onPress={() => {
+						toggleDarkMode();
+					}}
+				>
+					<Text>toggle dark mode</Text>
+				</TouchableOpacity>
+			</SafeAreaView>
+		</>
 	);
 }
-
-// because direct `cssProperty: colors.propertyName` evabe lekha jay na
-// tai function er moddhe likhe argument hishebe pass kora lagtese
-const createStyles = (colors) => {
-	const styles = StyleSheet.create({
-		container: {
-			flex: 1,
-			justifyContent: "center",
-			alignItems: "center",
-			gap: 20,
-			backgroundColor: colors.bg,
-		},
-		content: {
-			fontSize: 32,
-			color: colors.text,
-		},
-	});
-
-	return styles;
-};
