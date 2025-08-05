@@ -12,6 +12,7 @@ const Header = () => {
 	const homeStyles = createHomeStyles(colors);
 
 	// api gets called automatically. returns an `array of object`
+
 	const todos = useQuery(api.todos.getTodos);
 	console.log("todos api call: ", todos);
 
