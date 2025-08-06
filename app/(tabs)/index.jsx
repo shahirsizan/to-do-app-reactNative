@@ -41,6 +41,21 @@ export default function Index() {
 		}
 	};
 
+	const handleDeleteTodo = async (id) => {
+		Alert.alert(
+			"Delete Todo",
+			"Are you sure you want to delete this todo?",
+			[
+				{ text: "Cancel", style: "cancel" },
+				{
+					text: "Delete",
+					style: "destructive",
+					onPress: () => deleteTodo({ id }),
+				},
+			]
+		);
+	};
+
 	const isLoading = todos === undefined;
 	if (isLoading) {
 		return <LoadingSpinner />;
@@ -151,7 +166,7 @@ export default function Index() {
 
 							{/* 🗑️ delete button */}
 							<TouchableOpacity
-								// onPress={() => handleDeleteTodo(item._id)}
+								onPress={() => handleDeleteTodo(item._id)}
 								activeOpacity={0.8}
 								style={[
 									homeStyles.actionButton,
@@ -189,7 +204,7 @@ export default function Index() {
 					style={homeStyles.todoList}
 					contentContainerStyle={homeStyles.todoListContent}
 					ListEmptyComponent={<EmptyState />}
-					// showsVerticalScrollIndicator={false}
+					showsVerticalScrollIndicator={false}
 				/>
 
 				{/* dark mode toggle button */}
