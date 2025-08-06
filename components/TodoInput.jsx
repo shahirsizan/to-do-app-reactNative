@@ -29,6 +29,7 @@ const TodoInput = () => {
 	return (
 		<View style={homeStyles.inputSection}>
 			<View style={homeStyles.inputWrapper}>
+				{/* input box */}
 				<TextInput
 					style={homeStyles.input}
 					placeholder="What needs to be done?"
@@ -42,6 +43,7 @@ const TodoInput = () => {
 					}}
 				/>
 
+				{/* add button */}
 				<TouchableOpacity
 					onPress={() => {
 						handleAddTodo();

@@ -1,20 +1,18 @@
 import { createHomeStyles } from "@/assets/styles/home.styles";
-import { api } from "@/convex/_generated/api";
 import useTheme from "@/hooks/useTheme";
 // import { Ionicons } from "@expo/vector-icons";
-import { useQuery } from "convex/react";
 // import { LinearGradient } from "expo-linear-gradient";
 import { Text, View } from "react-native";
 
-const Header = () => {
+const Header = (props) => {
 	const { colors } = useTheme();
 
 	const homeStyles = createHomeStyles(colors);
 
-	// api gets called automatically. returns an `array of object`
-
-	const todos = useQuery(api.todos.getTodos);
-	console.log("todos api call: ", todos);
+	// const todos = useQuery(api.todos.getTodos);
+	// console.log("todos api call: ", todos);
+	const todos = props.todos;
+	// console.log("todos api call: ", todos);
 
 	const totalTodoCount = todos ? todos.length : 0;
 
