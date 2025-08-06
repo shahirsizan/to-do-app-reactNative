@@ -27,6 +27,7 @@ export default function Index() {
 	const updateTodo = useMutation(api.todos.updateTodo);
 	const [editingId, setEditingId] = useState(null);
 	const [editText, setEditText] = useState("");
+	const [isEditing, setIsEditing] = useState(false);
 
 	// api gets called automatically. returns an `array of object`
 	const todos = useQuery(api.todos.getTodos);
@@ -56,13 +57,45 @@ export default function Index() {
 		);
 	};
 
+	const handleEditTodo = (todo) => {
+		setEditText(todo.text);
+		setEditingId(todo._id);
+		setIsEditing(true);
+	};
+
+	const handleSaveEdit = async () => {
+		if (editingId && editText.trim()) {
+			try {
+				await updateTodo({ id: editingId, text: editText });
+				setEditingId(null);
+				setEditText("");
+			} catch (error) {
+				console.log("Error updating todo", error);
+				Alert.alert("Error", "Failed to update todo");
+			}
+		} else {
+			setEditingId(null);
+			setEditText("");
+			setIsEditing(false);
+			Alert.alert(
+				"Error",
+				"Todo text cannot be empty. Rolling back to original state."
+			);
+		}
+	};
+
+	const handleCancelEdit = () => {
+		setEditingId(null);
+		setEditText("");
+		setIsEditing(false);
+	};
+
 	const isLoading = todos === undefined;
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
 
 	const renderTodoItem = ({ item }) => {
-		const isEditing = item._id;
 		return (
 			<View
 				style={[
@@ -88,7 +121,7 @@ export default function Index() {
 				</TouchableOpacity>
 
 				{/* edit/normal mode */}
-				{false ? (
+				{isEditing && editingId === item._id ? (
 					<View style={homeStyles.editContainer}>
 						{/* 📝 todo input */}
 						<TextInput
@@ -104,7 +137,7 @@ export default function Index() {
 						<View style={homeStyles.editButtons}>
 							{/* ✅ save button */}
 							<TouchableOpacity
-								// onPress={handleSaveEdit}
+								onPress={handleSaveEdit}
 								style={[
 									homeStyles.editButton,
 									{ backgroundColor: "#10b981" },
@@ -117,7 +150,9 @@ export default function Index() {
 
 							{/* ❌ cancel button */}
 							<TouchableOpacity
-								// onPress={handleCancelEdit}
+								onPress={() => {
+									handleCancelEdit();
+								}}
 								style={[
 									homeStyles.editButton,
 									{ backgroundColor: "#9ca3af" },
@@ -149,7 +184,7 @@ export default function Index() {
 						<View style={homeStyles.todoActions}>
 							{/* ✏️ edit button */}
 							<TouchableOpacity
-								// onPress={() => handleEditTodo(item)}
+								onPress={() => handleEditTodo(item)}
 								style={[
 									homeStyles.actionButton,
 									{
