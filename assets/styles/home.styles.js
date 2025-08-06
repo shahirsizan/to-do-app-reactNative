@@ -216,10 +216,11 @@ export const createHomeStyles = (colors) => {
 		emptyIconContainer: {
 			width: 120,
 			height: 120,
-			borderRadius: 60,
 			justifyContent: "center",
 			alignItems: "center",
 			marginBottom: 24,
+			backgroundColor: "#9ca3af",
+			borderRadius: 70,
 		},
 		emptyText: {
 			fontSize: 24,

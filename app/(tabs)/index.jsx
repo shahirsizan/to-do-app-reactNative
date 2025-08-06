@@ -1,3 +1,4 @@
+import EmptyState from "@/components/EmptyState";
 import { api } from "@/convex/_generated/api";
 import useTheme from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
@@ -187,7 +188,7 @@ export default function Index() {
 					}}
 					style={homeStyles.todoList}
 					contentContainerStyle={homeStyles.todoListContent}
-					// ListEmptyComponent={<EmptyState />}
+					ListEmptyComponent={<EmptyState />}
 					// showsVerticalScrollIndicator={false}
 				/>
 
