@@ -242,14 +242,14 @@ export default function Index() {
 					showsVerticalScrollIndicator={false}
 				/>
 
-				{/* dark mode toggle button */}
-				<TouchableOpacity
+				{/* dark mode toggle button next version e release korar try korbo */}
+				{/* <TouchableOpacity
 					onPress={() => {
 						toggleDarkMode();
 					}}
 				>
 					<Text>toggle dark mode</Text>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 			</SafeAreaView>
 		</>
 	);

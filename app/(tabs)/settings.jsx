@@ -1,4 +1,5 @@
 import { createSettingsStyles } from "@/assets/styles/settings.styles";
+import DangerZone from "@/components/DangerZone";
 import ProgressStats from "@/components/ProgressStats";
 import { api } from "@/convex/_generated/api";
 import useTheme from "@/hooks/useTheme";
@@ -42,15 +43,12 @@ const SettingsScreen = () => {
 
 			<ScrollView
 				style={[settingsStyles.scrollView]}
-				contentContainerStyle={[
-					settingsStyles.content,
-					// { backgroundColor: "red", padding: 30 },
-				]}
+				contentContainerStyle={[settingsStyles.content]}
 				showsVerticalScrollIndicator={false}
 			>
 				<ProgressStats todos={todos} />
-				{/* <Preferences />
-					<DangerZone /> */}
+
+				<DangerZone />
 			</ScrollView>
 		</SafeAreaView>
 	);

@@ -6,13 +6,9 @@ import { Text, View } from "react-native";
 
 const Header = (props) => {
 	const { colors } = useTheme();
-
 	const homeStyles = createHomeStyles(colors);
 
-	// const todos = useQuery(api.todos.getTodos);
-	// console.log("todos api call: ", todos);
 	const todos = props.todos;
-	// console.log("todos api call: ", todos);
 
 	const totalTodoCount = todos ? todos.length : 0;
 
@@ -40,15 +36,19 @@ const Header = (props) => {
 			{/* progress bar */}
 			<View style={homeStyles.progressContainer}>
 				<View style={homeStyles.progressBarContainer}>
+					{/* progress bar pore dekhte hobe */}
 					<View style={homeStyles.progressBar}>
-						{/* progress bar pore dekhte hobe */}
-						{/* <View
+						<View
 							style={[
 								homeStyles.progressFill,
-								{ width: `${progressPercentage}%` },
+								{
+									width: `${progressPercentage}%`,
+								},
 							]}
-						></View> */}
+						></View>
 					</View>
+
+					{/* progress percentage */}
 					<Text style={homeStyles.progressText}>
 						{Math.round(progressPercentage)}%
 					</Text>

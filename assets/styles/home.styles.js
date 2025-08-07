@@ -62,14 +62,15 @@ export const createHomeStyles = (colors) => {
 		},
 		progressBar: {
 			flex: 1,
-			height: 12,
+			height: 15,
 			borderRadius: 6,
 			overflow: "hidden",
-			backgroundColor: colors.border,
+			backgroundColor: "gray",
 		},
 		progressFill: {
 			height: "100%",
 			borderRadius: 6,
+			backgroundColor: "#059669",
 		},
 		progressText: {
 			fontSize: 16,

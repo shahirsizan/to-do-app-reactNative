@@ -128,8 +128,6 @@ export const createSettingsStyles = (colors) => {
 			alignItems: "center",
 			justifyContent: "space-between",
 			paddingVertical: 20,
-			borderBottomWidth: 1,
-			borderBottomColor: colors.border,
 		},
 		actionLeft: {
 			flexDirection: "row",
@@ -137,9 +135,9 @@ export const createSettingsStyles = (colors) => {
 			flex: 1,
 		},
 		actionIcon: {
-			width: 36,
-			height: 36,
-			borderRadius: 8,
+			width: 46,
+			height: 46,
+			borderRadius: 10,
 			justifyContent: "center",
 			alignItems: "center",
 			marginRight: 16,
