@@ -36,8 +36,8 @@ export const createSettingsStyles = (colors) => {
 		},
 		content: {
 			paddingHorizontal: 20,
-			gap: 20,
 			paddingBottom: 120,
+			gap: 20,
 		},
 		section: {
 			borderRadius: 20,
@@ -79,9 +79,9 @@ export const createSettingsStyles = (colors) => {
 			marginRight: 16,
 		},
 		statIcon: {
-			width: 40,
-			height: 40,
-			borderRadius: 20,
+			width: 50,
+			height: 50,
+			borderRadius: 25,
 			justifyContent: "center",
 			alignItems: "center",
 		},

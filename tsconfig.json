@@ -12,6 +12,7 @@
 		".expo/types/**/*.ts",
 		"expo-env.d.ts",
 		"convex/schema.js",
-		"components/Header.jsx"
+		"components/Header.jsx",
+		"app/(tabs)/settings.jsx"
 	]
 }
